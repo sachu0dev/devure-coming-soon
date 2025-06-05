@@ -1,567 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Devure - Coming Soon</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --sage-dark: #819a91;
-            --sage-light: #a7c1a8;
-            --cream-light: #d1d8be;
-            --cream-white: #eeefe0;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Devure - Coming Soon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --sky: #bccdd9;
+      --beige: #f4e9cd;
+      --taupe-light: #d8c1b1;
+      --taupe-dark: #967d75;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: 'Inter', sans-serif;
-    background: linear-gradient(180deg, var(--cream-white) 0%, var(--cream-light) 30%, var(--sage-light) 60%);
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(180deg, var(--sky), var(--beige), var(--taupe-light), var(--taupe-dark));
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
 
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-        }
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
 
-        .background-shapes {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            overflow: hidden;
-            pointer-events: none;
-        }
+    .logo {
+      font-size: 4rem;
+      font-weight: 700;
+      color: var(--taupe-dark);
+      margin-bottom: 1rem;
+    }
 
-        .shape {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.1;
-            animation: float 8s ease-in-out infinite;
-        }
+    .tagline {
+      font-size: 1.4rem;
+      color: var(--taupe-dark);
+      margin-bottom: 2rem;
+    }
 
-        .shape:nth-child(1) {
-            width: 200px;
-            height: 200px;
-            background: var(--sage-dark);
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
-        }
+    .coming-soon {
+      font-size: 2.8rem;
+      font-weight: 600;
+      color: var(--taupe-dark);
+      margin-bottom: 1.5rem;
+    }
 
-        .shape:nth-child(2) {
-            width: 150px;
-            height: 150px;
-            background: var(--sage-light);
-            top: 60%;
-            right: 15%;
-            animation-delay: 2s;
-        }
+    .description {
+      font-size: 1.2rem;
+      color: #4e4442;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
 
-        .shape:nth-child(3) {
-            width: 100px;
-            height: 100px;
-            background: var(--cream-light);
-            bottom: 20%;
-            left: 20%;
-            animation-delay: 4s;
-        }
+    .badges, .features, .projects {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
 
-        .shape:nth-child(4) {
-            width: 120px;
-            height: 120px;
-            background: var(--sage-dark);
-            top: 30%;
-            right: 30%;
-            animation-delay: 1s;
-        }
+    .badge, .feature, .project {
+      background: rgba(255,255,255,0.5);
+      border-radius: 30px;
+      padding: 0.8rem 1.5rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--taupe-dark);
+      transition: 0.3s ease all;
+      backdrop-filter: blur(6px);
+    }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(180deg); }
-        }
+    .badge:hover, .feature:hover, .project:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
 
-        .container {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
+    .notify-form {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
 
-        .logo {
-            font-size: 4.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--sage-dark) 0%, #5a6b5d 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-            animation: glow 3s ease-in-out infinite alternate;
-        }
+    .email-input {
+      flex: 1 1 250px;
+      padding: 1rem;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      background: #fff;
+      color: #333;
+      outline: none;
+    }
 
-        @keyframes glow {
-            from { filter: drop-shadow(0 0 5px rgba(129, 154, 145, 0.3)); }
-            to { filter: drop-shadow(0 0 15px rgba(129, 154, 145, 0.6)); }
-        }
+    .notify-btn {
+      padding: 1rem 2rem;
+      background: var(--taupe-dark);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s ease all;
+    }
 
-        .tagline {
-            font-size: 1.3rem;
-            color: #4a5a4f;
-            margin-bottom: 2.5rem;
-            font-weight: 400;
-        }
+    .notify-btn:hover {
+      background: #7c6761;
+    }
 
-        .coming-soon {
-            font-size: 3rem;
-            font-weight: 600;
-            color: #3a4a3f;
-            margin-bottom: 1.5rem;
-            animation: fadeInUp 1s ease-out;
-        }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
 
-        .description {
-            font-size: 1.2rem;
-            color: #5a6a5f;
-            margin-bottom: 3rem;
-            line-height: 1.7;
-            max-width: 600px;
-            animation: fadeInUp 1s ease-out 0.2s both;
-        }
+    .social-link {
+      width: 45px;
+      height: 45px;
+      background: var(--beige);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--taupe-dark);
+      text-decoration: none;
+      transition: 0.3s ease;
+    }
 
-        .status-badges {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-            animation: fadeInUp 1s ease-out 0.3s both;
-        }
-
-        .status-badge {
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 0.7rem;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .status-badge:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .status-badge-launching {
-            background: linear-gradient(135deg, var(--sage-light) 0%, var(--cream-light) 100%);
-            color: #3a4a3f;
-        }
-
-        .status-badge-freelance {
-            background: linear-gradient(135deg, var(--cream-light) 0%, var(--cream-white) 100%);
-            color: #4a5a4f;
-        }
-
-        .status-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        .dot-launching {
-            background: var(--sage-dark);
-        }
-
-        .dot-available {
-            background: #5a6b5d;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.7; transform: scale(1.1); }
-        }
-
-        .badges {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-            animation: fadeInUp 1s ease-out 0.4s both;
-        }
-
-        .badge {
-            padding: 0.7rem 1.4rem;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: white;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: none;
-            cursor: default;
-        }
-
-        .badge::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.6s;
-        }
-
-        .badge:hover::before {
-            left: 100%;
-        }
-
-        .badge:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .badge-react {
-            background: linear-gradient(135deg, var(--sage-dark) 0%, #6b7c6f 100%);
-        }
-
-        .badge-node {
-            background: linear-gradient(135deg, var(--sage-light) 0%, var(--sage-dark) 100%);
-        }
-
-        .badge-typescript {
-            background: linear-gradient(135deg, #5a6b5d 0%, var(--sage-dark) 100%);
-        }
-
-        .badge-nextjs {
-            background: linear-gradient(135deg, #4a5a4f 0%, #3a4a3f 100%);
-        }
-
-        .badge-mongodb {
-            background: linear-gradient(135deg, var(--sage-light) 0%, #6b7c6f 100%);
-        }
-
-        .badge-aws {
-            background: linear-gradient(135deg, #6b7c6f 0%, var(--sage-dark) 100%);
-        }
-
-        .badge-docker {
-            background: linear-gradient(135deg, var(--sage-dark) 0%, #5a6b5d 100%);
-        }
-
-        .features {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-            animation: fadeInUp 1s ease-out 0.5s both;
-        }
-
-        .feature {
-            background: rgba(238, 239, 224, 0.8);
-            backdrop-filter: blur(15px);
-            padding: 1.5rem 2rem;
-            border-radius: 25px;
-            border: 2px solid rgba(255, 255, 255, 0.4);
-            color: #3a4a3f;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            min-width: 150px;
-        }
-
-        .feature:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .notify-form {
-            display: flex;
-            gap: 1rem;
-            max-width: 450px;
-            width: 100%;
-            margin-bottom: 3rem;
-            animation: fadeInUp 1s ease-out 0.6s both;
-        }
-
-        .email-input {
-            flex: 1;
-            padding: 1.2rem 1.8rem;
-            border: 2px solid rgba(255, 255, 255, 0.4);
-            border-radius: 50px;
-            background: rgba(238, 239, 224, 0.8);
-            backdrop-filter: blur(15px);
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.3s ease, background 0.3s ease;
-            color: #3a4a3f;
-        }
-
-        .email-input::placeholder {
-            color: #6a7a6f;
-        }
-
-        .email-input:focus {
-            border-color: var(--sage-dark);
-            background: rgba(238, 239, 224, 0.95);
-        }
-
-        .notify-btn {
-            padding: 1.2rem 2.5rem;
-            background: linear-gradient(135deg, var(--sage-dark) 0%, #6b7c6f 100%);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .notify-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(129, 154, 145, 0.4);
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            animation: fadeInUp 1s ease-out 0.7s both;
-        }
-
-        .social-link {
-            width: 55px;
-            height: 55px;
-            background: rgba(238, 239, 224, 0.8);
-            backdrop-filter: blur(15px);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            color: var(--sage-dark);
-            transition: transform 0.3s ease, background 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .social-link:hover {
-            transform: translateY(-5px);
-            background: rgba(238, 239, 224, 0.95);
-            color: #5a6b5d;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 2rem 1rem;
-            }
-            
-            .logo {
-                font-size: 3.5rem;
-            }
-            
-            .coming-soon {
-                font-size: 2.5rem;
-            }
-            
-            .description {
-                font-size: 1.1rem;
-            }
-            
-            .features {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .feature {
-                min-width: 200px;
-            }
-            
-            .notify-form {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .badges {
-                gap: 0.8rem;
-            }
-            
-            .badge {
-                padding: 0.6rem 1.2rem;
-                font-size: 0.8rem;
-            }
-            
-            .status-badges {
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .logo {
-                font-size: 3rem;
-            }
-            
-            .coming-soon {
-                font-size: 2rem;
-            }
-            
-            .tagline {
-                font-size: 1.1rem;
-            }
-            
-            .description {
-                font-size: 1rem;
-            }
-        }
-    </style>
+    .social-link:hover {
+      background: var(--taupe-light);
+    }
+  </style>
 </head>
 <body>
-    <div class="background-shapes">
-        <div class="shape"></div>
-        <div class="shape"></div>
-        <div class="shape"></div>
-        <div class="shape"></div>
+  <div class="container">
+    <div class="logo">Devure</div>
+    <div class="tagline">Fullstack Developer | React, Next.js, Node.js</div>
+
+    <h1 class="coming-soon">Coming Soon</h1>
+    <p class="description">
+      With projects like PGConnect, Kabutar Chat App, and Nameless Feedback, Devure crafts fullstack solutions
+      powered by React, Next.js, Node.js, Redis, Kafka, and AWS. Scalable, secure, and built with real-time technology.
+    </p>
+
+    <div class="badges">
+      <div class="badge">React</div>
+      <div class="badge">Next.js</div>
+      <div class="badge">Node.js</div>
+      <div class="badge">TypeScript</div>
+      <div class="badge">MongoDB</div>
+      <div class="badge">PostgreSQL</div>
+      <div class="badge">Redis</div>
+      <div class="badge">Kafka</div>
+      <div class="badge">Docker</div>
+      <div class="badge">AWS</div>
     </div>
 
-    <div class="container">
-        <div class="logo">Devure</div>
-        <div class="tagline">Fullstack Development Solutions</div>
-        
-        <h1 class="coming-soon">Coming Soon</h1>
-        <p class="description">
-            We're crafting something amazing! A premium fullstack development brand 
-            ready to bring your digital ideas to life with cutting-edge technology and creative solutions.
-        </p>
-
-        <div class="status-badges">
-            <div class="status-badge status-badge-launching">
-                <div class="status-dot dot-launching"></div>
-                Launching Soon
-            </div>
-            <div class="status-badge status-badge-freelance">
-                <div class="status-dot dot-available"></div>
-                Available for Hire
-            </div>
-        </div>
-
-        <div class="badges">
-            <div class="badge badge-react">React</div>
-            <div class="badge badge-nextjs">Next.js</div>
-            <div class="badge badge-node">Node.js</div>
-            <div class="badge badge-typescript">TypeScript</div>
-            <div class="badge badge-mongodb">MongoDB</div>
-            <div class="badge badge-aws">AWS</div>
-            <div class="badge badge-docker">Docker</div>
-        </div>
-
-        <div class="features">
-            <div class="feature">Frontend Magic</div>
-            <div class="feature">Backend Power</div>
-            <div class="feature">Full Solutions</div>
-        </div>
-
-        <form class="notify-form" onsubmit="handleNotify(event)">
-            <input 
-                type="email" 
-                class="email-input" 
-                placeholder="Enter your email for updates"
-                required
-            >
-            <button type="submit" class="notify-btn">Notify Me</button>
-        </form>
-
-        <div class="social-links">
-            <a href="#" class="social-link" title="LinkedIn">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                </svg>
-            </a>
-            <a href="#" class="social-link" title="GitHub">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                </svg>
-            </a>
-            <a href="#" class="social-link" title="Twitter">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                </svg>
-            </a>
-        </div>
+    <div class="features">
+      <div class="feature">Authentication & OAuth</div>
+      <div class="feature">Real-Time Communication</div>
+      <div class="feature">Cloud File Handling</div>
+      <div class="feature">Microservices & Scaling</div>
     </div>
 
-    <script>
-        function handleNotify(event) {
-            event.preventDefault();
-            const email = event.target.querySelector('.email-input').value;
-            alert(`Thank you! We'll notify you at ${email} when Devure launches.`);
-            event.target.reset();
-        }
+    <div class="projects">
+      <div class="project">PGConnect – Find & Chat PGs</div>
+      <div class="project">Kabutar – Real-time Chat</div>
+      <div class="project">Nameless – Anonymous Feedback</div>
+    </div>
 
-        // Add some interactive particles
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.style.position = 'fixed';
-            particle.style.width = '3px';
-            particle.style.height = '3px';
-            particle.style.background = '#819a91';
-            particle.style.borderRadius = '50%';
-            particle.style.opacity = '0.4';
-            particle.style.left = Math.random() * window.innerWidth + 'px';
-            particle.style.top = window.innerHeight + 'px';
-            particle.style.pointerEvents = 'none';
-            particle.style.zIndex = '1';
-            
-            document.body.appendChild(particle);
-            
-            const animation = particle.animate([
-                { transform: 'translateY(0px)', opacity: 0.4 },
-                { transform: `translateY(-${window.innerHeight + 100}px)`, opacity: 0 }
-            ], {
-                duration: Math.random() * 4000 + 3000,
-                easing: 'linear'
-            });
-            
-            animation.onfinish = () => particle.remove();
-        }
+    <form class="notify-form" onsubmit="handleNotify(event)">
+      <input 
+        type="email" 
+        class="email-input" 
+        placeholder="Enter your email for updates" 
+        required
+      />
+      <button type="submit" class="notify-btn">Notify Me</button>
+    </form>
 
-        // Create particles periodically
-        setInterval(createParticle, 3000);
-    </script>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/sachu0dev" target="_blank" class="social-link" title="LinkedIn">in</a>
+      <a href="https://github.com/sachu0dev" target="_blank" class="social-link" title="GitHub">gh</a>
+      <a href="mailto:sushil.dev.in@gmail.com" class="social-link" title="Email">@</a>
+    </div>
+  </div>
+
+  <script>
+    function handleNotify(event) {
+      event.preventDefault();
+      const email = event.target.querySelector('.email-input').value;
+      alert(`Thanks! We'll notify you at ${email} when Devure launches.`);
+      event.target.reset();
+    }
+  </script>
 </body>
 </html>
